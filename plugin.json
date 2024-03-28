@@ -1,8 +1,8 @@
 {
-  "name": "plugin-sample-vite-svelte",
-  "author": "frostime",
-  "url": "https://github.com/siyuan-note/plugin-sample-vite-svelte",
-  "version": "0.3.4",
+  "name": "sy-plugin-subPageIndex",
+  "author": "M.Lions",
+  "url": "https://github.com/M-Lions/sy-plugin-subPageIndex/tree/main",
+  "version": "0.1.0",
   "minAppVersion": "3.0.0",
   "backends": [
     "windows",
