@@ -1,3 +1,4 @@
+import { block } from "@siyuan-community/siyuan-sdk/dist/types/kernel/api";
 import { client, isMobile } from "./utils";
 import { fetchPost } from "siyuan";
 
@@ -5,6 +6,17 @@ export async function updateIndex({ detail }: any){
     const notebookId = detail.protyle.notebookId;
     const docPath = detail.protyle.path;
     const parentID = detail.protyle.block.rootID;
+
+    const blockAttr = await client.getBlockAttrs({id:parentID}).then(res => {return res.data})
+    console.log(blockAttr)
+
+    const childBlocks = await client.getChildBlocks({id:parentID}).then(res => {return res.data})
+    const blockId = childBlocks[1].id;
+    const setBlockAttr1 = await client.setBlockAttrs({id:blockId, attrs:{"iategory":"haha"}});
+    console.log(setBlockAttr1)
+
+    const blockAttr2 = await client.getBlockAttrs({id:blockId}).then(res => {return res.data})
+    console.log(blockAttr2)
 
     const subPageList = await getSubPageList(notebookId, docPath);
 
@@ -18,17 +30,14 @@ export async function updateIndex({ detail }: any){
 }
 
 // createIndex
-async function createIndex(subPageList,parentID){
+async function createIndex(subPageList, parentID){
     let mdText:string = "";
 
     for(let doc of subPageList){
-        mdText += `- [${doc.name}](${doc.path})`;
-        mdText += '<br>';
+        mdText += `- [${doc.name}](siyuan://blocks/${doc.path.slice(-25,-3)})\n`;
     }
 
     const a = await client.appendBlock({data:mdText, dataType:'markdown', parentID: parentID})
-
-    console.log(a);
 }
 
 // 获取文档id
