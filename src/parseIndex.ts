@@ -34,16 +34,14 @@ async function getSubPageList(notebookId:string, path:string){
 // 插入/更新目录子级块
 async function insertOrUpdateIndexBlock(parentId:string, subPageList: types.kernel.api.filetree.listDocsByPath.IFile[]){
     const querySql:string= `SELECT * FROM blocks WHERE root_id = '${parentId}' AND ial like '%custom-subpage-index%' order by updated desc limit 1`;
+    console.log(querySql);
 
-    const queryResult = await client.sql({stmt:querySql}).then(res => {return res.data});
+    const queryResult = await client.sql({stmt:querySql});
 
-    console.log("qr");
-    console.log(queryResult);
-
-    if(Array.prototype.isPrototypeOf(queryResult) && queryResult.length === 0){
+    if(Array.prototype.isPrototypeOf(queryResult.data) && queryResult.data.length === 0){
         //插入新的目录块
         const newIndexBlockId = await client.appendBlock({
-            parentID:parentId,
+            parentID: parentId,
             dataType: "markdown",
             data: createIndexBlockContent(subPageList),
         }).then(res=>{return res.data[0].doOperations[0].id});
@@ -52,10 +50,12 @@ async function insertOrUpdateIndexBlock(parentId:string, subPageList: types.kern
 
     }else{
         await client.updateBlock({
-            id:queryResult[0].id,
+            id:queryResult.data[0].id,
             dataType:"markdown",
             data:createIndexBlockContent(subPageList),
         });
+
+        await setIndexBlockAttrs(queryResult.data[0].id);
     }
 
 }
