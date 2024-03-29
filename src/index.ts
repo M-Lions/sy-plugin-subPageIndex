@@ -3,7 +3,7 @@ import {updateIndex} from './protyleLoaded';
 
 export default class SubPageIndex extends Plugin{
 
-    onload() : void{
+    async onload() {
         console.log("SubPageIndex onloaded");
         
         // 监听编辑器加载
@@ -18,5 +18,5 @@ export default class SubPageIndex extends Plugin{
         this.eventBus.off("loaded-protyle-static", updateIndex)
     }
 
-    
+
 }
