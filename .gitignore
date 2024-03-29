@@ -8,3 +8,4 @@ dev
 dist
 build
 tmp
+make_dev_link.js
