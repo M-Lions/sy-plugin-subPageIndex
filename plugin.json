@@ -19,12 +19,12 @@
     "desktop-window"
   ],
   "displayName": {
-    "en_US": "Plugin sample with vite and svelte",
-    "zh_CN": "插件样例 vite + svelte 版"
+    "en_US": "Auto subpage index",
+    "zh_CN": "子目录自动生成"
   },
   "description": {
-    "en_US": "SiYuan plugin sample with vite and svelte",
-    "zh_CN": "使用 vite 和 svelte 开发的思源插件样例"
+    "en_US": "A simple subpage index generator, as the way notion does",
+    "zh_CN": "一个仿notion的简易子目录生成器"
   },
   "readme": {
     "en_US": "README.md",
@@ -36,6 +36,6 @@
     ]
   },
   "keywords": [
-    "plugin", "sample", "插件样例"
+    "auto", "plugin", "subpage index"
   ]
 }

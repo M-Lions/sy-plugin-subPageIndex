@@ -1,8 +1,8 @@
 {
-  "name": "plugin-sample-vite-svelte",
-  "version": "0.3.2",
+  "name": "sy-plugin-subPageIndex",
+  "version": "0.1.0",
   "type": "module",
-  "description": "This is a sample plugin based on vite and svelte for Siyuan (https://b3log.org/siyuan)",
+  "description": "A simple subpage index generator",
   "repository": "",
   "homepage": "",
   "author": "",
